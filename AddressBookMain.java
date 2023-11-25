@@ -11,6 +11,7 @@ public class AddressBookMain {
         while (choice != 0) {
             System.out.println("Enter 1 to add contact");
             System.out.println("Enter 2 to edit contact");
+            System.out.println("Enter 3 to delete contact");
             System.out.println("Enter 0 to exit");
 
             try {
@@ -38,6 +39,11 @@ public class AddressBookMain {
                         String ln = sc.nextLine();
                         ab1.editAddress(fn, ln);
                         break;
+
+                    case 3:System.out.println("Enter the firstname and lastname of person you want to edit");
+                        String fn1 = sc.nextLine();
+                        String ln1 = sc.nextLine();
+                        ab1.deleteAddress(fn1, ln1);
 
                     case 0:
                         break;

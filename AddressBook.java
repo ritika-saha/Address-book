@@ -78,4 +78,18 @@ class AddressBook {
         System.out.println("Contact not found");
     }
 
+      public void deleteAddress(String firstName, String lastName){
+        for (contact c : contactList) {
+            if(c.getFname().equalsIgnoreCase(firstName) && c.getLname().equalsIgnoreCase(lastName)){
+                contactList.remove(c);
+                System.out.println("Contact DELETED !!");
+                display();
+                return;
+            }else{
+                System.out.println("CONTACT NOT AVAILABLE");
+            }
+        }
+    }
 }
+
+
