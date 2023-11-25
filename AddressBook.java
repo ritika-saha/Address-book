@@ -41,6 +41,41 @@ class AddressBook {
 
     }
 
-   
+    public void editAddress(String firstName, String lastName) {
+        
+        for (contact contact : contactList) {
+            if (contact.getFname().equalsIgnoreCase(firstName) && contact.getLname().equalsIgnoreCase(lastName)) {
+                Scanner scanner=new Scanner(System.in);
+                System.out.println("Enter new data----------------------> :");
+
+                System.out.print("Enter address: ");
+                String address = scanner.nextLine();
+
+                System.out.print("Enter city: ");
+                String city = scanner.nextLine();
+
+                System.out.print("Enter state: ");
+                String state = scanner.nextLine();
+
+                System.out.print("Enter zip: ");
+                String zip = scanner.nextLine();
+
+                System.out.print("Enter phone number: ");
+                String phone = scanner.nextLine();
+
+                System.out.print("Enter email: ");
+                String email = scanner.nextLine();
+
+                contact.updateContact(address, city, state, zip, phone, email);
+                System.out.println("Contact updated !!!!!!!!!!!!!!\n.");
+                display();
+              //  scanner.close();
+                return;
+
+            }
+        }
+        
+        System.out.println("Contact not found");
+    }
 
 }
