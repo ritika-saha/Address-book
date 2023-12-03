@@ -148,7 +148,7 @@ public class AddressBookMain {
                     if (stateList.containsKey(state)) {
                         stateList.get(state).add(fullName);
                     } else {
-                        ArrayList<String> tmp = new ArrayList();
+                        ArrayList<String> tmp = new ArrayList<>();
                         tmp.add(fullName);
                         stateList.put(stateQuery, tmp);
                     }
@@ -162,6 +162,52 @@ public class AddressBookMain {
         for(String names: stateList.get(stateQuery)){
             System.out.println(names);
         }
+
+
+        // searching people by city (branch searchCity)
+        System.out.println("Enter Name of the City to Display the list");
+        String cityQuery=sc.nextLine();
+
+        Map<String, ArrayList<String>> cityList = new HashMap<>();
+
+        for (AddressBook adr : addressBookList) {
+            AddressBook currentBook = adr;
+            ArrayList<contact> currentContact = currentBook.contactList;
+
+            for (contact person : currentContact) {
+                if (cityQuery.equals(person.getCity())) {
+
+                    String fullName = person.getFname() + " " + person.getLname();
+                    String city = person.getCity();
+
+                    if (cityList.containsKey(city)) {
+                        cityList.get(city).add(fullName);
+                    } else {
+                        ArrayList<String> tmp = new ArrayList<>();
+                        tmp.add(fullName);
+                        cityList.put(cityQuery, tmp);
+                    }
+                }
+
+            }
+
+        }
+
+        System.out.println("People in this city are ------>");
+        for(String names: cityList.get(cityQuery)){
+            System.out.println(names);
+        }
+
+
+
+
+
+
+
+
+
+
+
 
         sc.close();
 
