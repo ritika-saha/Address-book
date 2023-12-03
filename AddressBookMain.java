@@ -227,7 +227,7 @@ public class AddressBookMain {
              AddressBook currentBook = adr;
     ArrayList<contact> currentContact = currentBook.contactList;
 
-    // Using a custom comparator to sort contacts by name
+    // Using a custom comparator to sort contacts by name (branch sortByName)
     Comparator<contact> nameComparator = Comparator
             .comparing(contact::getFname)
             .thenComparing(contact::getLname);
@@ -239,6 +239,47 @@ public class AddressBookMain {
     System.out.println("------------------------------------------------------------------------");
 
             }
+
+
+            //sort by city state or zip (branch sortByPreference)
+            System.out.println("Do you want to sort by city , state or zip? (enter : c/s/z)");
+            String c=sc.nextLine();
+            if(c.equals("c")){
+                for(AddressBook adr: addressBookList){
+                    AddressBook currentBook=adr;
+                    ArrayList<contact> currContact=currentBook.contactList;
+                    Comparator<contact> cityComparator=Comparator.comparing(contact::getCity);
+                    Collections.sort(currContact,cityComparator);
+                    System.out.println("sorted by city : ");
+                    currentBook.display();
+                    System.out.println("----------------------------------------------------------------------");
+                }
+            }
+
+            else if(c.equals("s")){
+                 for(AddressBook adr: addressBookList){
+                    AddressBook currentBook=adr;
+                    ArrayList<contact> currContact=currentBook.contactList;
+                    Comparator<contact> stateComparator=Comparator.comparing(contact::getState);
+                    Collections.sort(currContact,stateComparator);
+                    System.out.println("sorted by state : ");
+                    currentBook.display();
+                    System.out.println("----------------------------------------------------------------------");
+                }
+            }
+
+            else if(c.equals("z")){
+                 for(AddressBook adr: addressBookList){
+                    AddressBook currentBook=adr;
+                    ArrayList<contact> currContact=currentBook.contactList;
+                    Comparator<contact> zipComparator=Comparator.comparing(contact::getZip);
+                    Collections.sort(currContact,zipComparator);
+                    System.out.println("sorted by zip : ");
+                    currentBook.display();
+                    System.out.println("----------------------------------------------------------------------");
+                }
+            }
+
 
 
 
