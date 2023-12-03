@@ -200,6 +200,25 @@ public class AddressBookMain {
 
 
 
+        //counting people by city or state
+        System.out.println("enter city or state to get the count of people (c/s)");
+        String query=sc.nextLine();
+        if(query.equals("c")){
+            System.out.println("Enter city name");
+            String cityName=sc.nextLine();
+            int countByCity= cityList.get(cityName).size();
+            System.out.println("The number of People in this city is : "+countByCity);
+        }
+
+        else{
+            System.out.println("Enter the state name");
+            String stateName=sc.nextLine();
+            int countByState=stateList.get(stateName).size();
+            System.out.println("Number of people in this State is : "+countByState);
+        }
+
+
+
 
 
 
