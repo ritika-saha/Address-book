@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -219,6 +221,25 @@ public class AddressBookMain {
 
 
 
+        //sorting by name (branch sortByName)
+
+         for (AddressBook adr : addressBookList) {
+             AddressBook currentBook = adr;
+    ArrayList<contact> currentContact = currentBook.contactList;
+
+    // Using a custom comparator to sort contacts by name
+    Comparator<contact> nameComparator = Comparator
+            .comparing(contact::getFname)
+            .thenComparing(contact::getLname);
+
+    Collections.sort(currentContact, nameComparator);
+
+    System.out.println("Sorted Contacts in Address Book:");
+    currentBook.display();
+    System.out.println("------------------------------------------------------------------------");
+
+            }
+
 
 
 
@@ -231,8 +252,5 @@ public class AddressBookMain {
         sc.close();
 
     }
-
-    
-
 
 }
