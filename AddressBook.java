@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 class AddressBook {
 
-    private ArrayList<contact> contactList;
+    public ArrayList<contact> contactList;
 
     public AddressBook() {
         contactList = new ArrayList<contact>();

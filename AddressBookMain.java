@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddressBookMain {
     public static void main(String[] args) {
@@ -126,7 +128,46 @@ public class AddressBookMain {
             System.out.println("------------------------------------------------------------------------");
         }
 
+
+        //searching people by state (branch searchState)
+        System.out.println("Enter Name of the State to Display the list");
+        String stateQuery=sc.nextLine();
+
+        Map<String, ArrayList<String>> stateList = new HashMap<>();
+
+        for (AddressBook adr : addressBookList) {
+            AddressBook currentBook = adr;
+            ArrayList<contact> currentContact = currentBook.contactList;
+
+            for (contact person : currentContact) {
+                if (stateQuery.equals(person.getState())) {
+
+                    String fullName = person.getFname() + " " + person.getLname();
+                    String state = person.getState();
+
+                    if (stateList.containsKey(state)) {
+                        stateList.get(state).add(fullName);
+                    } else {
+                        ArrayList<String> tmp = new ArrayList();
+                        tmp.add(fullName);
+                        stateList.put(stateQuery, tmp);
+                    }
+                }
+
+            }
+
+        }
+
+        System.out.println("People in this city are ------>");
+        for(String names: stateList.get(stateQuery)){
+            System.out.println(names);
+        }
+
+        sc.close();
+
     }
+
+    
 
 
 }
