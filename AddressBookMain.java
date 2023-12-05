@@ -11,7 +11,7 @@ public class AddressBookMain {
 
         Scanner sc = new Scanner(System.in);
         AddressBook ab1 = new AddressBook();
-        InputValidator validator=new InputValidator();
+        InputValidator validator = new InputValidator();
         int choice = -1;
 
         while (choice != 0) {
@@ -28,41 +28,55 @@ public class AddressBookMain {
                     case 1:
                         System.out.println(
                                 "Enter first and last names, address, city, state, zip, phone number, and email...");
+                        System.out.println("Enter first name");
                         String fname = sc.nextLine();
-                        while(validator.validateName(fname)==false){
+                        while (validator.validateName(fname) == false) {
                             System.out.println("!!!!!!!!!!!!!! invalid first name enter again !!!!!!!!!!!");
-                            fname=sc.nextLine();
+                            fname = sc.nextLine();
                         }
+
+                        System.out.println("Enter last name");
                         String lname = sc.nextLine();
-                         while(validator.validateName(lname)==false){
+                        while (validator.validateName(lname) == false) {
                             System.out.println("!!!!!!!!!!!!!! invalid last name enter again !!!!!!!!!!!");
-                            lname=sc.nextLine();
+                            lname = sc.nextLine();
                         }
+
+                        System.out.println("Enter address");
                         String address = sc.nextLine();
+                        System.out.println("enter city");
                         String city = sc.nextLine();
-                        while(validator.validatePlace(city)==false){
+                        while (validator.validatePlace(city) == false) {
                             System.out.println("!!!!!!!!!!!!!!!!   Invalid city name enter again !!!!!!!!!!!!! ");
-                            city=sc.nextLine();
+                            city = sc.nextLine();
                         }
+
+                        System.out.println("Enter state");
                         String state = sc.nextLine();
-                         while(validator.validatePlace(state)==false){
+                        while (validator.validatePlace(state) == false) {
                             System.out.println("!!!!!!!!!!!!!!!!   Invalid state name enter again !!!!!!!!!!!!! ");
-                            state=sc.nextLine();
+                            state = sc.nextLine();
                         }
+
+                        System.out.println("Enter zip");
                         String zip = sc.nextLine();
-                        while(validator.validateZip(zip)==false){
+                        while (validator.validateZip(zip) == false) {
                             System.out.println("!!!!!!!!!!!!!! invalid zip enter again !!!!!!!!!!!");
-                            zip=sc.nextLine();
+                            zip = sc.nextLine();
                         }
+
+                        System.out.println("Enter phone number");
                         String phone = sc.nextLine();
-                        while (validator.validatePhone(phone)==false) {
+                        while (validator.validatePhone(phone) == false) {
                             System.out.println("!!!!!!!!!!!!!!!!!! invalid phone number enter again !!!!!!!!!!!!!!");
-                            phone=sc.nextLine();
+                            phone = sc.nextLine();
                         }
+
+                        System.out.println("Enter email");
                         String email = sc.nextLine();
-                        while (validator.validateEmail(email)==false) {
+                        while (validator.validateEmail(email) == false) {
                             System.out.println("!!!!!!!!!!!!!!!!!!! invalid email Enter again !!!!!!!!!!!!!!!!!!!!");
-                            email=sc.nextLine();
+                            email = sc.nextLine();
                         }
                         contact c = new contact(fname, lname, address, city, state, zip, phone, email);
                         ab1.addAddress(c);
@@ -116,15 +130,57 @@ public class AddressBookMain {
                     switch (choice1) {
                         case 1:
                             System.out.println(
-                                    "Enter first and last names, address, city, state, zip, phone number, and email...");
-                            String fname = sc.nextLine();
-                            String lname = sc.nextLine();
-                            String address = sc.nextLine();
-                            String city = sc.nextLine();
-                            String zip = sc.nextLine();
-                            String state = sc.nextLine();
-                            String phone = sc.nextLine();
-                            String email = sc.nextLine();
+                                "Enter first and last names, address, city, state, zip, phone number, and email...");
+                        System.out.println("Enter first name");
+                        String fname = sc.nextLine();
+                        while (validator.validateName(fname) == false) {
+                            System.out.println("!!!!!!!!!!!!!! invalid first name enter again !!!!!!!!!!!");
+                            fname = sc.nextLine();
+                        }
+
+                        System.out.println("Enter last name");
+                        String lname = sc.nextLine();
+                        while (validator.validateName(lname) == false) {
+                            System.out.println("!!!!!!!!!!!!!! invalid last name enter again !!!!!!!!!!!");
+                            lname = sc.nextLine();
+                        }
+
+                        System.out.println("Enter address");
+                        String address = sc.nextLine();
+                        System.out.println("enter city");
+                        String city = sc.nextLine();
+                        while (validator.validatePlace(city) == false) {
+                            System.out.println("!!!!!!!!!!!!!!!!   Invalid city name enter again !!!!!!!!!!!!! ");
+                            city = sc.nextLine();
+                        }
+
+                        System.out.println("Enter state");
+                        String state = sc.nextLine();
+                        while (validator.validatePlace(state) == false) {
+                            System.out.println("!!!!!!!!!!!!!!!!   Invalid state name enter again !!!!!!!!!!!!! ");
+                            state = sc.nextLine();
+                        }
+
+                        System.out.println("Enter zip");
+                        String zip = sc.nextLine();
+                        while (validator.validateZip(zip) == false) {
+                            System.out.println("!!!!!!!!!!!!!! invalid zip enter again !!!!!!!!!!!");
+                            zip = sc.nextLine();
+                        }
+
+                        System.out.println("Enter phone number");
+                        String phone = sc.nextLine();
+                        while (validator.validatePhone(phone) == false) {
+                            System.out.println("!!!!!!!!!!!!!!!!!! invalid phone number enter again !!!!!!!!!!!!!!");
+                            phone = sc.nextLine();
+                        }
+
+                        System.out.println("Enter email");
+                        String email = sc.nextLine();
+                        while (validator.validateEmail(email) == false) {
+                            System.out.println("!!!!!!!!!!!!!!!!!!! invalid email Enter again !!!!!!!!!!!!!!!!!!!!");
+                            email = sc.nextLine();
+                        }
                             contact c = new contact(fname, lname, address, city, state, zip, phone, email);
                             ab.addAddress(c);
                             break;
