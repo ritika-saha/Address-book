@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-
-
 class AddressBook {
 
     public ArrayList<contact> contactList;
@@ -19,7 +16,7 @@ class AddressBook {
             System.out.println("---------------------------------------------------------------");
             System.out.println( "NAME  \t\t\tADDRESS  \t\tCITY  \t\tSTATE \t\tZIP  \t\tPHONE NUMBER  \t\tEMAIL");
             for(int i=0;i<contactList.size();i++){
-                  String fname=contactList.get(i).getFname();
+                 String fname=contactList.get(i).getFname();
                  String lname=contactList.get(i).getLname();
                  String address=contactList.get(i).getAddress();
                  String city=contactList.get(i).getCity();
@@ -69,7 +66,7 @@ class AddressBook {
                 contact.updateContact(address, city, state, zip, phone, email);
                 System.out.println("Contact updated !!!!!!!!!!!!!!\n.");
                 display();
-              //  scanner.close();
+               // scanner.close();
                 return;
 
             }

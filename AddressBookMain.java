@@ -11,6 +11,7 @@ public class AddressBookMain {
 
         Scanner sc = new Scanner(System.in);
         AddressBook ab1 = new AddressBook();
+        InputValidator validator=new InputValidator();
         int choice = -1;
 
         while (choice != 0) {
@@ -25,15 +26,44 @@ public class AddressBookMain {
 
                 switch (choice) {
                     case 1:
-                        System.out.println("Enter first and last names, address, city, state, zip, phone number, and email...");
+                        System.out.println(
+                                "Enter first and last names, address, city, state, zip, phone number, and email...");
                         String fname = sc.nextLine();
+                        while(validator.validateName(fname)==false){
+                            System.out.println("!!!!!!!!!!!!!! invalid first name enter again !!!!!!!!!!!");
+                            fname=sc.nextLine();
+                        }
                         String lname = sc.nextLine();
+                         while(validator.validateName(lname)==false){
+                            System.out.println("!!!!!!!!!!!!!! invalid last name enter again !!!!!!!!!!!");
+                            lname=sc.nextLine();
+                        }
                         String address = sc.nextLine();
                         String city = sc.nextLine();
-                        String zip = sc.nextLine();
+                        while(validator.validatePlace(city)==false){
+                            System.out.println("!!!!!!!!!!!!!!!!   Invalid city name enter again !!!!!!!!!!!!! ");
+                            city=sc.nextLine();
+                        }
                         String state = sc.nextLine();
+                         while(validator.validatePlace(state)==false){
+                            System.out.println("!!!!!!!!!!!!!!!!   Invalid state name enter again !!!!!!!!!!!!! ");
+                            state=sc.nextLine();
+                        }
+                        String zip = sc.nextLine();
+                        while(validator.validateZip(zip)==false){
+                            System.out.println("!!!!!!!!!!!!!! invalid zip enter again !!!!!!!!!!!");
+                            zip=sc.nextLine();
+                        }
                         String phone = sc.nextLine();
+                        while (validator.validatePhone(phone)==false) {
+                            System.out.println("!!!!!!!!!!!!!!!!!! invalid phone number enter again !!!!!!!!!!!!!!");
+                            phone=sc.nextLine();
+                        }
                         String email = sc.nextLine();
+                        while (validator.validateEmail(email)==false) {
+                            System.out.println("!!!!!!!!!!!!!!!!!!! invalid email Enter again !!!!!!!!!!!!!!!!!!!!");
+                            email=sc.nextLine();
+                        }
                         contact c = new contact(fname, lname, address, city, state, zip, phone, email);
                         ab1.addAddress(c);
                         break;
@@ -45,7 +75,8 @@ public class AddressBookMain {
                         ab1.editAddress(fn, ln);
                         break;
 
-                    case 3:System.out.println("Enter the firstname and lastname of person you want to edit");
+                    case 3:
+                        System.out.println("Enter the firstname and lastname of person you want to edit");
                         String fn1 = sc.nextLine();
                         String ln1 = sc.nextLine();
                         ab1.deleteAddress(fn1, ln1);
@@ -63,77 +94,78 @@ public class AddressBookMain {
             }
         }
 
-        //multiple addressbook branch multipleBook
-        ArrayList<AddressBook> addressBookList=new ArrayList<>();
+        // multiple addressbook branch multipleBook
+        ArrayList<AddressBook> addressBookList = new ArrayList<>();
         addressBookList.add(ab1);
         System.out.println("do you want to add new address Book list? (yes/no)");
-        String a=sc.nextLine();
-        if(a.equals("yes")){
-             AddressBook ab = new AddressBook();
-        int choice1 = -1;
+        String a = sc.nextLine();
+        if (a.equals("yes")) {
+            AddressBook ab = new AddressBook();
+            int choice1 = -1;
 
-        while (choice1 != 0) {
-            System.out.println("Enter 1 to add contact");
-            System.out.println("Enter 2 to edit contact");
-            System.out.println("Enter 3 to delete contact");
-            System.out.println("Enter 0 to exit");
+            while (choice1 != 0) {
+                System.out.println("Enter 1 to add contact");
+                System.out.println("Enter 2 to edit contact");
+                System.out.println("Enter 3 to delete contact");
+                System.out.println("Enter 0 to exit");
 
-            try {
-                choice1 = sc.nextInt();
-                sc.nextLine(); // Consume the newline character
+                try {
+                    choice1 = sc.nextInt();
+                    sc.nextLine(); // Consume the newline character
 
-                switch (choice1) {
-                    case 1:
-                        System.out.println("Enter first and last names, address, city, state, zip, phone number, and email...");
-                        String fname = sc.nextLine();
-                        String lname = sc.nextLine();
-                        String address = sc.nextLine();
-                        String city = sc.nextLine();
-                        String zip = sc.nextLine();
-                        String state = sc.nextLine();
-                        String phone = sc.nextLine();
-                        String email = sc.nextLine();
-                        contact c = new contact(fname, lname, address, city, state, zip, phone, email);
-                        ab.addAddress(c);
-                        break;
+                    switch (choice1) {
+                        case 1:
+                            System.out.println(
+                                    "Enter first and last names, address, city, state, zip, phone number, and email...");
+                            String fname = sc.nextLine();
+                            String lname = sc.nextLine();
+                            String address = sc.nextLine();
+                            String city = sc.nextLine();
+                            String zip = sc.nextLine();
+                            String state = sc.nextLine();
+                            String phone = sc.nextLine();
+                            String email = sc.nextLine();
+                            contact c = new contact(fname, lname, address, city, state, zip, phone, email);
+                            ab.addAddress(c);
+                            break;
 
-                    case 2:
-                        System.out.println("Enter the firstname and lastname of person you want to edit");
-                        String fn = sc.nextLine();
-                        String ln = sc.nextLine();
-                        ab.editAddress(fn, ln);
-                        break;
+                        case 2:
+                            System.out.println("Enter the firstname and lastname of person you want to edit");
+                            String fn = sc.nextLine();
+                            String ln = sc.nextLine();
+                            ab.editAddress(fn, ln);
+                            break;
 
-                    case 3:System.out.println("Enter the firstname and lastname of person you want to edit");
-                        String fn1 = sc.nextLine();
-                        String ln1 = sc.nextLine();
-                        ab.deleteAddress(fn1, ln1);
+                        case 3:
+                            System.out.println("Enter the firstname and lastname of person you want to edit");
+                            String fn1 = sc.nextLine();
+                            String ln1 = sc.nextLine();
+                            ab.deleteAddress(fn1, ln1);
 
-                    case 0:
-                        break;
+                        case 0:
+                            break;
 
-                    default:
-                        System.out.println("Invalid choice. Please enter a valid option.");
+                        default:
+                            System.out.println("Invalid choice. Please enter a valid option.");
+                    }
+
+                } catch (java.util.InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter a valid number.");
+                    sc.nextLine(); // Consume the invalid input
                 }
-
-            } catch (java.util.InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a valid number.");
-                sc.nextLine(); // Consume the invalid input
             }
-        }
-        addressBookList.add(ab);
+            addressBookList.add(ab);
         }
 
         System.out.println("ADDRESS BOOKS IN THE SYSTEM----------------------->");
-        for(int i=0;i<addressBookList.size();i++){
+        for (int i = 0; i < addressBookList.size(); i++) {
             addressBookList.get(i).display();
             System.out.println("------------------------------------------------------------------------");
         }
 
-
-        //searching people by state (branch searchState)
+        // searching people by state (branch searchState)
         System.out.println("Enter Name of the State to Display the list");
-        String stateQuery=sc.nextLine();
+        String stateQuery = sc.nextLine();
 
         Map<String, ArrayList<String>> stateList = new HashMap<>();
 
@@ -152,7 +184,7 @@ public class AddressBookMain {
                     } else {
                         ArrayList<String> tmp = new ArrayList<>();
                         tmp.add(fullName);
-                        stateList.put(stateQuery, tmp);
+                        stateList.put(state, tmp);
                     }
                 }
 
@@ -161,14 +193,13 @@ public class AddressBookMain {
         }
 
         System.out.println("People in this city are ------>");
-        for(String names: stateList.get(stateQuery)){
+        for (String names : stateList.get(stateQuery)) {
             System.out.println(names);
         }
 
-
         // searching people by city (branch searchCity)
         System.out.println("Enter Name of the City to Display the list");
-        String cityQuery=sc.nextLine();
+        String cityQuery = sc.nextLine();
 
         Map<String, ArrayList<String>> cityList = new HashMap<>();
 
@@ -187,7 +218,7 @@ public class AddressBookMain {
                     } else {
                         ArrayList<String> tmp = new ArrayList<>();
                         tmp.add(fullName);
-                        cityList.put(cityQuery, tmp);
+                        cityList.put(city, tmp);
                     }
                 }
 
@@ -196,99 +227,88 @@ public class AddressBookMain {
         }
 
         System.out.println("People in this city are ------>");
-        for(String names: cityList.get(cityQuery)){
+        for (String names : cityList.get(cityQuery)) {
             System.out.println(names);
         }
 
-
-
-        //counting people by city or state
+        // counting people by city or state
         System.out.println("enter city or state to get the count of people (c/s)");
-        String query=sc.nextLine();
-        if(query.equals("c")){
+        String query = sc.nextLine();
+        if (query.equals("c")) {
             System.out.println("Enter city name");
-            String cityName=sc.nextLine();
-            int countByCity= cityList.get(cityName).size();
-            System.out.println("The number of People in this city is : "+countByCity);
+            String cityName = sc.nextLine();
+            int countByCity = 0;
+            if (cityList.containsKey(cityName))
+                countByCity = cityList.get(cityName).size();
+            System.out.println("The number of People in this city is : " + countByCity);
         }
 
-        else{
+        else {
             System.out.println("Enter the state name");
-            String stateName=sc.nextLine();
-            int countByState=stateList.get(stateName).size();
-            System.out.println("Number of people in this State is : "+countByState);
+            String stateName = sc.nextLine();
+            int countByState = 0;
+            if (stateList.containsKey(stateName))
+                countByState = stateList.get(stateName).size();
+            System.out.println("Number of people in this State is : " + countByState);
         }
 
+        // sorting by name (branch sortByName)
 
+        for (AddressBook adr : addressBookList) {
+            AddressBook currentBook = adr;
+            ArrayList<contact> currentContact = currentBook.contactList;
 
-        //sorting by name (branch sortByName)
+            // Using a custom comparator to sort contacts by name (branch sortByName)
+            Comparator<contact> nameComparator = Comparator
+                    .comparing(contact::getFname)
+                    .thenComparing(contact::getLname);
 
-         for (AddressBook adr : addressBookList) {
-             AddressBook currentBook = adr;
-    ArrayList<contact> currentContact = currentBook.contactList;
+            Collections.sort(currentContact, nameComparator);
 
-    // Using a custom comparator to sort contacts by name (branch sortByName)
-    Comparator<contact> nameComparator = Comparator
-            .comparing(contact::getFname)
-            .thenComparing(contact::getLname);
+            System.out.println("Sorted Contacts in Address Book:");
+            currentBook.display();
+            System.out.println("------------------------------------------------------------------------");
 
-    Collections.sort(currentContact, nameComparator);
+        }
 
-    System.out.println("Sorted Contacts in Address Book:");
-    currentBook.display();
-    System.out.println("------------------------------------------------------------------------");
-
+        // sort by city state or zip (branch sortByPreference)
+        System.out.println("Do you want to sort by city , state or zip? (enter : c/s/z)");
+        String c = sc.nextLine();
+        if (c.equals("c")) {
+            for (AddressBook adr : addressBookList) {
+                AddressBook currentBook = adr;
+                ArrayList<contact> currContact = currentBook.contactList;
+                Comparator<contact> cityComparator = Comparator.comparing(contact::getCity);
+                Collections.sort(currContact, cityComparator);
+                System.out.println("sorted by city : ");
+                currentBook.display();
+                System.out.println("----------------------------------------------------------------------");
             }
+        }
 
-
-            //sort by city state or zip (branch sortByPreference)
-            System.out.println("Do you want to sort by city , state or zip? (enter : c/s/z)");
-            String c=sc.nextLine();
-            if(c.equals("c")){
-                for(AddressBook adr: addressBookList){
-                    AddressBook currentBook=adr;
-                    ArrayList<contact> currContact=currentBook.contactList;
-                    Comparator<contact> cityComparator=Comparator.comparing(contact::getCity);
-                    Collections.sort(currContact,cityComparator);
-                    System.out.println("sorted by city : ");
-                    currentBook.display();
-                    System.out.println("----------------------------------------------------------------------");
-                }
+        else if (c.equals("s")) {
+            for (AddressBook adr : addressBookList) {
+                AddressBook currentBook = adr;
+                ArrayList<contact> currContact = currentBook.contactList;
+                Comparator<contact> stateComparator = Comparator.comparing(contact::getState);
+                Collections.sort(currContact, stateComparator);
+                System.out.println("sorted by state : ");
+                currentBook.display();
+                System.out.println("----------------------------------------------------------------------");
             }
+        }
 
-            else if(c.equals("s")){
-                 for(AddressBook adr: addressBookList){
-                    AddressBook currentBook=adr;
-                    ArrayList<contact> currContact=currentBook.contactList;
-                    Comparator<contact> stateComparator=Comparator.comparing(contact::getState);
-                    Collections.sort(currContact,stateComparator);
-                    System.out.println("sorted by state : ");
-                    currentBook.display();
-                    System.out.println("----------------------------------------------------------------------");
-                }
+        else if (c.equals("z")) {
+            for (AddressBook adr : addressBookList) {
+                AddressBook currentBook = adr;
+                ArrayList<contact> currContact = currentBook.contactList;
+                Comparator<contact> zipComparator = Comparator.comparing(contact::getZip);
+                Collections.sort(currContact, zipComparator);
+                System.out.println("sorted by zip : ");
+                currentBook.display();
+                System.out.println("----------------------------------------------------------------------");
             }
-
-            else if(c.equals("z")){
-                 for(AddressBook adr: addressBookList){
-                    AddressBook currentBook=adr;
-                    ArrayList<contact> currContact=currentBook.contactList;
-                    Comparator<contact> zipComparator=Comparator.comparing(contact::getZip);
-                    Collections.sort(currContact,zipComparator);
-                    System.out.println("sorted by zip : ");
-                    currentBook.display();
-                    System.out.println("----------------------------------------------------------------------");
-                }
-            }
-
-
-
-
-
-
-
-
-
-
+        }
 
         sc.close();
 
