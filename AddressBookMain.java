@@ -4,12 +4,18 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class AddressBookMain {
 
     public static Map<String, ArrayList<String>> stateList = new HashMap<>();
     public static Map<String, ArrayList<String>> cityList = new HashMap<>();
-    public static void main(String[] args) {
+
+       public static void main(String[] args) {
         System.out.println("----------------Welcome to Address Book Program--------------");
 
         Scanner sc = new Scanner(System.in);
@@ -368,6 +374,31 @@ public class AddressBookMain {
                 System.out.println("----------------------------------------------------------------------");
             }
         }
+
+        //uc13 reading and writing the addressBook in file
+       String path="AddressBookData.txt";
+       try(BufferedWriter writer=new BufferedWriter(new FileWriter(path))){
+         for (AddressBook adr : addressBookList) {
+            AddressBook currentBook = adr;
+            ArrayList<contact> currentContact = currentBook.contactList;
+            for (contact person : currentContact) {
+                writer.write(person.toString()+"\n");
+            }
+        }
+        System.out.println("Data Written to file");
+       }catch(IOException e){
+        e.printStackTrace();
+       }
+
+       System.out.println("Displaying the data read from the File -------------------------------------->");
+
+       try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+        String line;
+           while ((line=reader.readLine()) != null)
+              System.out.println(line);
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
 
         sc.close();
 

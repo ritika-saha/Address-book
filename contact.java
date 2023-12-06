@@ -61,4 +61,11 @@ public class contact {
         this.email = email;
     }
 
+    @Override
+    public String toString() {
+        return String.format(
+                "NAME : %s %s\nADDRESS : %s\nCITY : %s\nSTATE :%s\nZIP : %s\nPHONE NUMBER : %s\nEMAIL : %s\n",
+                fname, lname, address, city, state, zip, phone, email);
+    }
+
 }
