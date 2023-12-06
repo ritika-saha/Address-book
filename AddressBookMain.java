@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AddressBookMain {
+
+    public static Map<String, ArrayList<String>> stateList = new HashMap<>();
+    public static Map<String, ArrayList<String>> cityList = new HashMap<>();
     public static void main(String[] args) {
         System.out.println("----------------Welcome to Address Book Program--------------");
 
@@ -223,7 +226,7 @@ public class AddressBookMain {
         System.out.println("Enter Name of the State to Display the list");
         String stateQuery = sc.nextLine();
 
-        Map<String, ArrayList<String>> stateList = new HashMap<>();
+        
 
         for (AddressBook adr : addressBookList) {
             AddressBook currentBook = adr;
@@ -257,7 +260,7 @@ public class AddressBookMain {
         System.out.println("Enter Name of the City to Display the list");
         String cityQuery = sc.nextLine();
 
-        Map<String, ArrayList<String>> cityList = new HashMap<>();
+        
 
         for (AddressBook adr : addressBookList) {
             AddressBook currentBook = adr;
