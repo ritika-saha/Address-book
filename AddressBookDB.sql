@@ -156,3 +156,79 @@ select * from addressbook_table;
 --John	Doe	123 Main St	Anytown	CA	123456	91 5555555555	john.doe@email.com	John Doe	Family
 --John	Doe	123 Main St	Anytown	CA	123457	91 5555555556	john.doe2@email.com	John Doe	Friend
 
+-- uc_12 Draw the ER Diagram for Address Book Service DB
+create table person(
+	person_id int not null auto_increment,
+    first_name varchar(50) not null,
+    last_name varchar(50),
+    phone varchar(20),
+    email varchar(320) not null,
+    primary key(person_id, first_name, email)
+);
+
+create table address(
+	address_id int not null auto_increment,
+    address varchar(100) not null,
+    city varchar(20) not null,
+    state varchar(20),
+    zip varchar(10),
+    primary key(address_id)
+);
+
+create table addressbook_table2(
+	person_id int not null,
+    address_id int not null,
+    name varchar(50),
+    type varchar(20),
+    primary key(person_id),
+    foreign key(person_id) references person(person_id),
+    foreign key(address_id) references address(address_id)
+);
+
+insert into person(first_name, last_name, phone, email) values
+	("Ritika", "Saha", "91 9191919191", "riri@gmail.com"),
+    ("Joon", "Kim", "91 5454545454", "joon@gmail.com"),
+	("Hema", "Chowdhury", "91 8484848484", "hema@gmail.com"),
+    ("Raj", "Das", "91 8181818181", "raj@gmail.com"),
+    ("Somu", "Shah", "91 7373737373", "somu@gmail.com");
+insert into address(address, city, state, zip) values
+	("ffgg", "Cob", "WB", "929399"),
+    ("dfgd", "Mumbai", "Maharashtra", "294939"),
+	("dfeq", "Kolkata", "WB", "360401"),
+    ("kofj", "Pune", "Maharashtra", "939494"),
+    ("mbko", "Patna", "Bihar", "384531");
+insert into addressbook_table2(person_id, address_id, name, type) values
+	(1,1,"bookA","Family"),
+    (2,2,"bookA","Family"),
+    (3,3,"bookA","Friend"),
+    (4,4,"bookA","Friend"),
+    (5,5,"bookA","Family");
+
+    -- UC13
+-- ability to execute all queries as in UC6,7,8,10
+
+-- retrieving people belonging to a city
+select * from person where person_id in 
+	(select person_id from addressbook_table2 as ab inner join address as ad on ab.address_id=ad.address_id where city = "Cob");
+
+-- OUTPUT 
+-- 1	Ritika	Saha	91 9191919191	riri@gmail.com
+
+-- count contacts by city or state
+select state, count(person_id) from addressbook_table2 as ab inner join address as ad on ab.address_id=ad.address_id where state = "WB";
+-- OUTPUT 
+-- WB	2
+
+-- get contacts sorted by name for given State
+select * from person where person_id in 
+	(select person_id from addressbook_table2 as ab inner join address as ad on ab.address_id=ad.address_id where state="WB")
+order by first_name asc;
+-- OUTPUT
+--3	Hema	Chowdhury	91 8484848484	hema@gmail.com
+--1	Ritika	Saha	91 9191919191	riri@gmail.com
+
+---- count contacts by type
+select type, count(type) as countPerType from addressbook_table2 group by type;
+--OUTPUT 
+--Family	3
+--Friend	2
